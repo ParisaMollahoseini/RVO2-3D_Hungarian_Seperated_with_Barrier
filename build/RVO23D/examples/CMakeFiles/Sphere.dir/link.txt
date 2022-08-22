@@ -1,0 +1,1 @@
+/usr/bin/c++  -fPIC  -rdynamic CMakeFiles/Sphere.dir/Sphere.cpp.o  -o Sphere  ../src/libRVO.a 

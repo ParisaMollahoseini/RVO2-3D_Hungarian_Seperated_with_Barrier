@@ -1,0 +1,33 @@
+{
+    "startPoints": [
+        [
+            -0.6,
+            0.6,
+            0.77588
+        ],
+        [
+            -0.2,
+            1.115109,
+            0.2
+        ]
+    ],
+    "goalPoints": [        [
+            -0.6,
+            0.6,
+            0.77588
+        ],
+        [
+            -0.2,
+            1.115109,
+            0.2
+        ]],
+    "timeStep": -1,
+    "neighborDist": -1,
+    "maxNeighbors": -1,
+    "timeHorizon": -1,
+    "radius": -1,
+    "maxSpeed": -1,
+    "velocity_x": 0,
+    "velocity_y": 0,
+    "velocity_z": 0
+}

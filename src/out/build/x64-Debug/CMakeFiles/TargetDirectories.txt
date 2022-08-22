@@ -1,0 +1,6 @@
+C:/Users/Soheil_Pc/Desktop/orca_python_3d-master/src/out/build/x64-Debug/CMakeFiles/RVO.dir
+C:/Users/Soheil_Pc/Desktop/orca_python_3d-master/src/out/build/x64-Debug/CMakeFiles/install/local.dir
+C:/Users/Soheil_Pc/Desktop/orca_python_3d-master/src/out/build/x64-Debug/CMakeFiles/install.dir
+C:/Users/Soheil_Pc/Desktop/orca_python_3d-master/src/out/build/x64-Debug/CMakeFiles/edit_cache.dir
+C:/Users/Soheil_Pc/Desktop/orca_python_3d-master/src/out/build/x64-Debug/CMakeFiles/rebuild_cache.dir
+C:/Users/Soheil_Pc/Desktop/orca_python_3d-master/src/out/build/x64-Debug/CMakeFiles/list_install_components.dir
