@@ -5,6 +5,7 @@
 
 
 import os
+import signal
 import subprocess
 from pathlib import Path
 import json
@@ -403,7 +404,7 @@ def save_layout_data(click):
     cur_path = Path(os.getcwd())
     cur_parent = cur_path.parent
     
-    command = './Sphere {} > {}.txt'.format(savedFile,savedFile)
+    command = './Sphere {}.json > {}.txt'.format(savedFile,savedFile)
     process = subprocess.Popen((command), shell=True ,stdout=subprocess.PIPE, cwd=str(cur_parent))
     
     while True:
@@ -417,12 +418,7 @@ def save_layout_data(click):
         command = 'python3 run_offline_vpython.py -i {}.txt -r {}'.format(savedFile,RADIUS)
         process = subprocess.Popen((command), shell=True ,stdout=subprocess.PIPE, cwd=str(cur_parent))
 
-        while True:
-            output = process.stdout.readline()
-            if output == b'' and process.poll() is not None:
-                break
-            if output:
-                print(output.strip())
+        os.kill(os.getpid(),signal.SIGTERM)
             
     return json.dumps({"sent":"annotatio"}, indent=4)    
 #################################################################
