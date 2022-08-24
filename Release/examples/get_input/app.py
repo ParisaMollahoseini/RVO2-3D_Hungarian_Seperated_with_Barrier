@@ -4,6 +4,7 @@
 # In[ ]:
 
 
+import re
 import os
 import signal
 import subprocess
@@ -386,9 +387,14 @@ def save_layout_data(layout_data):
     global layout
     
     if layout_data:
-        if 'scene.camera' in layout_data.keys():
-            layout = layout_data["scene.camera"]
+        for key in layout_data.keys():
+            if bool(re.match(r"scene.[a-z]+", key)):
+                layout[key[6:]] = (layout_data[key])
+    else:
+        layout = {}
     
+    print('----------------------------------------------------')
+    print('layout data now:\n',layout_data)
     return json.dumps({"saved":"layout"}, indent=4)      
 #################################################################
 ######################## Send Data To Algorithm #################
@@ -417,9 +423,16 @@ def save_layout_data(click):
     if showSim:      
         command = 'python3 run_offline_vpython.py -i {}.txt -r {}'.format(savedFile,RADIUS)
         process = subprocess.Popen((command), shell=True ,stdout=subprocess.PIPE, cwd=str(cur_parent))
-
+        
         os.kill(os.getpid(),signal.SIGTERM)
-            
+#         while True:
+#             output = process.stdout.readline()
+#             if output == b'' and process.poll() is not None:
+#                 break
+#             if output:
+#                 print(output.strip())
+    
+    
     return json.dumps({"sent":"annotatio"}, indent=4)    
 #################################################################
 ################### Update figure and clicked data ##############
@@ -462,6 +475,7 @@ def brain_graph_handler(figure, current_anno,new_filename, layout_data, click_da
         figure["layout"] = plot_layout
         cs = [[i / (len(colorscale) - 1), rgb] for i, rgb in enumerate(colorscale)]
         len_fig = len(figure["data"])
+
         figure["data"][0]["colorscale"] = cs        
 
 
@@ -513,8 +527,11 @@ def brain_graph_handler(figure, current_anno,new_filename, layout_data, click_da
 
             figure["data"][0]["colorscale"] = cs
 
-
-    figure["layout"]['scene']['camera'] = layout
+    if layout != {}:
+        for key in layout.keys():
+            figure["layout"]['scene'][key] = layout[key]
+    print('----------------------------------------------------')
+    print("figure layout is now:\n",figure["layout"]['scene'])
     return figure
 #################################################################
 ########################### Save Annotation Data ################
