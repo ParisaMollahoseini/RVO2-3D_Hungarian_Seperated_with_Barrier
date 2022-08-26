@@ -1,3 +1,7 @@
 dash==2.6.1
 pandas==1.4.2
 dash-colorscales==0.0.4
+<<<<<<< HEAD
+=======
+
+>>>>>>> be09a7e54575b8e4e05790f30d61a6210a29d87e
