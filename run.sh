@@ -1,4 +1,4 @@
-#/bin/bash
+#!/bin/bash
 
 pip3 install -r requirements.txt
 
@@ -12,8 +12,8 @@ cmake -DCMAKE_BUILD_TYPE=Release ..
 
 make
 
-cp -r ../after_create_release/* ./examples
+cp -r ../after_create_release/* ./examples/
 
-python3 ./examples/get_input/app.py 
+cd ./examples/get_input
 
-
+python3 app.py
