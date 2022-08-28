@@ -194,7 +194,7 @@ void setupScenario()
 	//read barrier file
 	std::string text;
 	std::ifstream BarFile("barrier.txt");
-	radius_ = 1.5f;
+	
 
 	while (getline(BarFile, text)) {
 		std::stringstream   lineStream(text);    // convert your line into a stream.
@@ -208,7 +208,7 @@ void setupScenario()
 				if (lineStream >> x >> y >> z)
 				{
 					RVO::Agent bar;
-					bar.setAgentDefaults(15.0f, 10, 10.0f, radius_, 2.0f, RVO::Vector3(0, 0, 0));//velocity
+					bar.setAgentDefaults(15.0f, -1, 10.0f, radius_, 2.0f, RVO::Vector3(0, 0, 0));//velocity
 					bar.id_ = barriers_.size();
 					bar.position_ = RVO::Vector3(x, y, z);
 					
@@ -222,7 +222,7 @@ void setupScenario()
 				if (lineStream >> x >> y >> z >> vx >> vy >> vz)
 				{
 					RVO::Agent bar;
-					bar.setAgentDefaults(15.0f, 10, 10.0f, radius_, 2.0f, RVO::Vector3(vx, vy, vz));//velocity
+					bar.setAgentDefaults(15.0f, -1, 10.0f, radius_, 2.0f, RVO::Vector3(vx, vy, vz));//velocity
 					bar.id_ = barriers_.size();
 					bar.position_ = RVO::Vector3(x, y, z);
 					
@@ -434,10 +434,9 @@ int main(int argc, char** argv)
 		file_name = argv[1];
 	}
 
-	
+
 	std::ifstream f(file_name);
 	json data = json::parse(f);
-        
 
 	num_agents = data["startPoints"].size();
 	data["startPoints"].get_to(startpoints);
