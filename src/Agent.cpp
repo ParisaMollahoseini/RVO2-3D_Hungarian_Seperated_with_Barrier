@@ -214,7 +214,11 @@ namespace RVO {
 				u = (combinedRadius * invTimeStep - wLength) * unitW;
 			}
 
+			//if(other->maxNeighbors_ != -1)
 			plane.point = velocity_ + 0.5f * u;
+			//else
+			//	plane.point = velocity_ +  u;
+
 			orcaPlanes_.push_back(plane);
 		}
 

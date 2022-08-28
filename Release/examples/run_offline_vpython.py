@@ -34,7 +34,8 @@ scene = canvas(width=1000, height=500)
 # In[29]:
 
 
-global running 
+global running, obst_indx
+obst_indx = []
 running = True
 
 def Run(b):
@@ -96,9 +97,12 @@ def distance_between(first, second):
       return sqrt((first[0]-second[0]) ** 2 + (first[1]-second[1]) ** 2 + (first[2]-second[2]) ** 2)
 
 def check_collision(all_positions, radius):
+    global obst_indx
     collisions = []
     for i in range(len(all_positions)):
         for j in range(i, len(all_positions)):
+            if (i in obst_indx) and (j in obst_indx):
+                continue
             if i == j:
                 continue
             distance = distance_between(all_positions[i], all_positions[j])
@@ -165,7 +169,7 @@ def build_agents(num,MAIN_LIST,Radius):
 
 
 def main():
-    global running
+    global running, obst_indx
     
     parser = argparse.ArgumentParser(description="Help for run simulator",
                                     formatter_class=argparse.ArgumentDefaultsHelpFormatter)
@@ -183,6 +187,7 @@ def main():
     LOG_FILE = config['inputfile']
     MAIN_LIST = read_log(LOG_FILE)
     RADIUS = float(config['agent_radius'])
+    print('r is : ',RADIUS)
     Surface = []
 
 
@@ -218,9 +223,11 @@ def main():
                 new_x = coordinate[0]
                 new_y = coordinate[1]
                 new_z = coordinate[2]
+                
+                if coordinate[3]==2:
+                    obst_indx.append(len(all_positions))
 
                 all_positions.append((new_x, new_y, new_z))
-
                 agents[count].pos = vector(new_x, new_y, new_z)
                 count += 1
 
