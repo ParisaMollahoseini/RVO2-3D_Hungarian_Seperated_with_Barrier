@@ -424,7 +424,10 @@ def save_layout_data(click):
         command = 'python3 run_offline_vpython.py -i {}.txt -r {}'.format(savedFile,RADIUS)
         process = subprocess.Popen((command), shell=True ,stdout=subprocess.PIPE, cwd=str(cur_parent))
         
-        os.kill(os.getpid(),signal.SIGTERM)
+        while True:
+            if process.poll() is not None:
+                os.kill(os.getpid(),signal.SIGTERM)
+                break
 #         while True:
 #             output = process.stdout.readline()
 #             if output == b'' and process.poll() is not None:
