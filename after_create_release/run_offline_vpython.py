@@ -55,8 +55,9 @@ time_text = wtext(text='travel time = {}'.format(0),pos=scene.title_anchor,)
 def setspeed(s):
     rate_text.text = '{:1.2f}'.format(s.value)
 
+scene.append_to_caption(' Time between each step:   ')    
 rate_slider = slider(step=0.01,min=0.01, max=0.5, value=0.25, length=220, bind=setspeed, right=15,top=20,pos=scene.caption_anchor)
-scene.append_to_caption(' speed: ')
+
 rate_text = wtext(text='{:1.2f}'.format(rate_slider.value))
 
 
