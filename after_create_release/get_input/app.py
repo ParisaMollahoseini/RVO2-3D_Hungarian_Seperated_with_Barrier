@@ -35,7 +35,7 @@ server = app.server
 
 GITHUB_LINK = os.environ.get(
     "GITHUB_LINK",
-    "https://github.com/plotly/dash-sample-apps/tree/master/apps/dash-brain-viewer",
+    "https://github.com/ParisaMollahoseini/RVO2-3D_Hungarian_Seperated_with_Barrier",
 )
 
 default_colorscale_index = [ea[1] for ea in default_colorscale]
